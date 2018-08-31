@@ -36,12 +36,7 @@ RUN installUtility install --acceptLicense microProfile-1.3 \
     && rm -rf /output/workarea /output/logs
 
 # Create symlinks && set permissions for non-root user
-RUN mkdir /logs \
-    && ln -s $WLP_OUTPUT_DIR/defaultServer /output \
-    && ln -s /opt/ibm/wlp/usr/servers/defaultServer /config  \
-    && ln -s /opt/ibm /liberty \
-    && mkdir /config/configDropins \
-    && useradd -u 1001 -r -g 0 -s /sbin/nologin default \
+RUN  useradd -u 1001 -r -g 0 -s /sbin/nologin default \
     && chown -R 1001:0 /config \
     && chmod -R g+rw /config \
     && chown -R 1001:0 /opt/ibm/docker/docker-server \
