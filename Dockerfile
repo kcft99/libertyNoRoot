@@ -32,8 +32,16 @@ ENV JAVA_HOME=/opt/ibm/java \
     JVM_ARGS="-Xshareclasses:name=liberty,nonfatal,cacheDir=/output/.classCache/"
 
 # Install MicroProfile features
-RUN installUtility install --acceptLicense microProfile-1.3 \
-    && rm -rf /output/workarea /output/logs
+RUN if [ ! -z $REPOSITORIES_PROPERTIES ]; then mkdir /opt/ibm/wlp/etc/ \
+  && echo $REPOSITORIES_PROPERTIES > /opt/ibm/wlp/etc/repositories.properties; fi \
+  && installUtility install --acceptLicense \
+    appSecurity-2.0 bluemixUtility-1.0 collectiveMember-1.0 ldapRegistry-3.0 \
+    localConnector-1.0 microProfile-1.0 microProfile-1.2 microProfile-1.3 monitor-1.0 restConnector-1.0 \
+    requestTiming-1.0 restConnector-2.0 sessionDatabase-1.0 sessionCache-1.0 ssl-1.0 transportSecurity-1.0 \
+    webCache-1.0 webProfile-7.0 appSecurityClient-1.0 javaee-7.0 javaeeClient-7.0 \
+  && if [ ! -z $REPOSITORIES_PROPERTIES ]; then rm /opt/ibm/wlp/etc/repositories.properties; fi \
+  && rm -rf /output/workarea /output/logs
+
 
 # Create symlinks && set permissions for non-root user
 RUN  useradd -u 1001 -r -g 0 -s /sbin/nologin default \
