@@ -5,7 +5,6 @@
         <feature>javaee-7.0</feature>
         <feature>localConnector-1.0</feature>
         <feature>adminCenter-1.0</feature>
-         <feature>ssl-1.0</feature>
     </featureManager>
 
    <!-- For the keystore, default keys are generated and stored in a keystore. To provide the keystore password, generate an 
