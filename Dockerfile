@@ -61,6 +61,7 @@ USER 1001
 # Add server.xml
 COPY server.xml /config/
 COPY TestPWAWeb.war /opt/ibm/wlp/usr/servers/defaultServer/dropins/
+COPY TestNGCRMWeb.war /opt/ibm/wlp/usr/servers/defaultServer/dropins/
 
 EXPOSE 9080 9443
 ENTRYPOINT ["/opt/ibm/docker/docker-server"]
