@@ -54,7 +54,7 @@ RUN  useradd -u 1001 -r -g 0 -s /sbin/nologin default \
     && chown -R 1001:0 /opt/ibm/wlp/output \
     && chmod -R g+rw /opt/ibm/wlp/output \
     && chown -R 1001:0 /logs \
-    && chmod -R g+rw /logs
+    && chmod -R g+rw /logs || true
 
 USER 1001
 
